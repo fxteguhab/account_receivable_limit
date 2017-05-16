@@ -13,7 +13,7 @@
 	""",
 	'images': [
 	],
-	'depends': ['base','board','web','stock'],
+	'depends': ['base','board','web','stock', 'sale'],
 	'data': [
 		'views/res_partner.xml',
 		'views/account_receivable_limit.xml',
