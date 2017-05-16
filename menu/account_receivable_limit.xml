@@ -10,8 +10,18 @@
 			<field name="view_id" ref="account_receivable_limit_customer_credit_limit_tree"/>
 		</record>
 
+		<record id="action_receivable_limit_log" model="ir.actions.act_window">
+			<field name="name">Credit Limit Log</field>
+			<field name="res_model">res.partner.receivable.limit.log</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
 		<menuitem sequence="1" id="menu_action_customer_credit_limit" parent="base.menu_base_config"
 				action="action_customer_credit_limit"/>
+
+		<menuitem sequence="1" id="menu_action_receivable_limit_log" parent="base.menu_sales"
+				action="action_receivable_limit_log"/>
 	</data>
 </openerp>
 

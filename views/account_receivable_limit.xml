@@ -2,7 +2,7 @@
 <openerp>
 	<data>
 		<record id="account_receivable_limit_customer_credit_limit_tree" model="ir.ui.view">
-			<field name="name">account.receivable.limit.customer.credit.limit.form</field>
+			<field name="name">account.receivable.limit.customer.credit.limit.tree</field>
 			<field name="model">res.partner</field>
 			<field name="arch" type="xml">
 				<tree editable="bottom" create="false" delete="false">
@@ -10,6 +10,36 @@
 					<field name="credit_limit"/>
 					<field name="is_overlimit_enabled"/>
 				</tree>
+			</field>
+		</record>
+
+
+		<record id="account_receivable_limit_receivable_limit_log_tree" model="ir.ui.view">
+			<field name="name">account.receivable.limit.receivable.limit.log.tree</field>
+			<field name="model">res.partner.receivable.limit.log</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="change_date"/>
+					<field name="partner_id"/>
+					<field name="old_limit"/>
+					<field name="new_limit"/>
+					<field name="change_by"/>
+				</tree>
+			</field>
+		</record>
+		<record id="account_receivable_limit_receivable_limit_log_form" model="ir.ui.view">
+			<field name="name">account.receivable.limit.receivable.limit.log.form</field>
+			<field name="model">res.partner.receivable.limit.log</field>
+			<field name="arch" type="xml">
+				<form>
+					<group>
+						<field name="change_date"/>
+						<field name="partner_id"/>
+						<field name="old_limit"/>
+						<field name="new_limit"/>
+						<field name="change_by"/>
+					</group>
+				</form>
 			</field>
 		</record>
 	</data>
