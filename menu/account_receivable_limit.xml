@@ -1,0 +1,17 @@
+<openerp>
+	<data>
+
+		<record id="action_customer_credit_limit" model="ir.actions.act_window">
+			<field name="name">Customer Credit Limit</field>
+			<field name="res_model">res.partner</field>
+			<field name="domain">[('customer', '=', True)]</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="account_receivable_limit_customer_credit_limit_tree"/>
+		</record>
+
+		<menuitem sequence="1" id="menu_action_customer_credit_limit" parent="base.menu_base_config"
+				action="action_customer_credit_limit"/>
+	</data>
+</openerp>
+

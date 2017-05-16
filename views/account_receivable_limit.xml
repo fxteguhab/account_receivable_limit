@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="account_receivable_limit_customer_credit_limit_tree" model="ir.ui.view">
+			<field name="name">account.receivable.limit.customer.credit.limit.form</field>
+			<field name="model">res.partner</field>
+			<field name="arch" type="xml">
+				<tree editable="bottom" create="false" delete="false">
+					<field name="name" readonly="True"/>
+					<field name="credit_limit"/>
+					<field name="is_overlimit_enabled"/>
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

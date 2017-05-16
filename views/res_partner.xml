@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="res_partner_view_credit_overlimit_form_inherit" model="ir.ui.view">
+			<field name="name">res.partner.credit.overlimit.form.inherit</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="account.view_partner_property_form"/>
+			<field name="arch" type="xml">
+				<field name="credit_limit" position="after">
+					<field name="is_overlimit_enabled"/>
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>

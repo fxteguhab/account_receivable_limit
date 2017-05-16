@@ -1,3 +1,4 @@
+# noinspection PyStatementEffect
 {
 	'name': 'Account Receivable Limit',
 	'version': '1.0',
@@ -10,11 +11,13 @@
 	'description': """
 		Stock Opname
 	""",
-	'author': 'Christyan Juniady and Associates',
 	'images': [
 	],
 	'depends': ['base','board','web','stock'],
 	'data': [
+		'views/res_partner.xml',
+		'views/account_receivable_limit.xml',
+		'menu/account_receivable_limit.xml'
 	],
 	'demo': [
 	],
