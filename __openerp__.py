@@ -15,9 +15,9 @@
 	],
 	'depends': ['base','board','web','stock', 'sale'],
 	'data': [
-		'views/res_partner.xml',
-		'views/account_receivable_limit.xml',
-		'menu/account_receivable_limit.xml'
+		'views/res_partner_view.xml',
+		'views/account_receivable_limit_view.xml',
+		'menu/account_receivable_limit_menu.xml'
 	],
 	'demo': [
 	],

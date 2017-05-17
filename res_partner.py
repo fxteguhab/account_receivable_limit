@@ -5,13 +5,19 @@ from openerp.osv import osv, fields
 class res_partner(osv.osv):
 	_inherit = 'res.partner'
 	
+	# COLUMNS ---------------------------------------------------------------------------------------------------------------
+	
 	_columns = {
 		'is_overlimit_enabled': fields.boolean('Is Overlimit Enabled')
 	}
 	
+	# DEFAULTS --------------------------------------------------------------------------------------------------------------
+	
 	_defaults = {
 		'is_overlimit_enabled': False
 	}
+	
+	# OVERRIDES -------------------------------------------------------------------------------------------------------------
 	
 	def create(self, cr, uid, vals, context=None):
 		receivable_limit_log_obj = self.pool.get('res.partner.receivable.limit.log')
@@ -33,6 +39,8 @@ class res_partner(osv.osv):
 					)
 		return super(res_partner, self).write(cr, uid, ids, vals, context)
 	
+	# METHODS ---------------------------------------------------------------------------------------------------------------
+	
 	def is_credit_overlimit(self, cr, uid, partner_id, credit_modifier=0, context=None):
 		"""
 		Checks for the given partner_id with is_overlimit_enabled is False whether current credit + credit modifier is larger
@@ -47,10 +55,14 @@ class res_partner(osv.osv):
 				and partner.credit + credit_modifier > partner.credit_limit):
 			return True
 		return False
-	
+
+# ==========================================================================================================================
+
 
 class res_partner_receivable_limit_log(osv.osv):
 	_name = 'res.partner.receivable.limit.log'
+	
+	# COLUMNS ---------------------------------------------------------------------------------------------------------------
 	
 	_columns = {
 		'partner_id': fields.many2one('res.partner', 'Customer', required=True, ondelete='cascade'),
@@ -60,9 +72,13 @@ class res_partner_receivable_limit_log(osv.osv):
 		'change_by': fields.many2one('res.users', 'Change by')
 	}
 	
+	# DEFAULTS --------------------------------------------------------------------------------------------------------------
+	
 	_defaults = {
 		'change_by': lambda self, cr, uid, context: uid
 	}
+	
+	# OVERRIDES -------------------------------------------------------------------------------------------------------------
 	
 	def name_get(self, cr, uid, ids, context=None):
 		result = []
@@ -70,6 +86,8 @@ class res_partner_receivable_limit_log(osv.osv):
 			name = log.change_date + ' / ' + log.partner_id.name
 			result.append((log.id, name))
 		return result
+	
+	# METHODS ---------------------------------------------------------------------------------------------------------------
 	
 	def record_receivable_limit_changes(self, cr, uid, partner_id, old_limit, new_limit, context=None):
 		"""
