@@ -1,5 +1,6 @@
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
+from datetime import datetime, date, timedelta
 
 
 class sale_order(osv.osv):
@@ -8,13 +9,16 @@ class sale_order(osv.osv):
 	# COLUMNS ---------------------------------------------------------------------------------------------------------------
 	
 	_columns = {
-		'is_receivable_overlimit': fields.boolean('Is Receivable Enabled')
+		'is_receivable_overlimit': fields.boolean('Is Receivable Enabled'),
+	# field untuk membatasi sale order list yang muncul sesuai dengan date dari res config global
+		'limit_sale_order_date' : fields.date("Limit Sale Order Date")
 	}
 	
 	# DEFAULTS --------------------------------------------------------------------------------------------------------------
 	
 	_defaults = {
-		'is_receivable_overlimit': False
+		'is_receivable_overlimit': False,
+		'limit_sale_order_date' : lambda *a: datetime.today().strftime('1970-01-01 00:00:00'),
 	}
 	
 	# ACTIONS ---------------------------------------------------------------------------------------------------------------
