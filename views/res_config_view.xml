@@ -13,7 +13,7 @@
 						<button string="Cancel" type="object" name="cancel" class="oe_link" />
 					</header>
 					<group string="Sale Order Global Settings">
-						<field name="limit_sale_order_date" />
+						<field name="default_limit_sale_order_date" />
 					</group>
 				</form>
 			</field>
