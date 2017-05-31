@@ -18,7 +18,8 @@
 		'views/res_partner_view.xml',
 		'views/res_config_view.xml',
 		'views/account_receivable_limit_view.xml',
-		'menu/account_receivable_limit_menu.xml'
+		'menu/account_receivable_limit_menu.xml',
+		'menu/sale_menu.xml'
 	],
 	'demo': [
 	],

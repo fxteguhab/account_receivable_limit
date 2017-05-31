@@ -36,4 +36,5 @@ class sale_order_config_settings(osv.osv_memory):
 	def set_params(self, cr, uid, ids, context=None):
 		config_param_obj = self.pool.get('ir.config_parameter')
 		config = self.browse(cr, uid, ids[0], context)
-		config_param_obj.set_param(cr, uid, 'sale.order', config.limit_sale_order_n_date)
+		n_date = config.limit_sale_order_n_date if config.limit_sale_order_n_date else 0
+		config_param_obj.set_param(cr, uid, 'sale.order', n_date)

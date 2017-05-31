@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="sale.action_orders" model="ir.actions.act_window">
+			<field name="type">ir.actions.act_window</field>
+			<field name="context">{'limit_date':1}</field>
+		</record>
+	</data>
+</openerp>
