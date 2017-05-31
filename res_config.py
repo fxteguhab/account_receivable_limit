@@ -8,10 +8,21 @@ class sale_order_config_settings(osv.osv_memory):
 	_name = 'sale.order.config.settings'
 	_inherit = 'res.config.settings'
 	
+	_PARAMS = [
+		("limit_sale_order_date", "sale.order"),
+	]
+	
 	_columns = {
-		'default_limit_sale_order_date': fields.date("Limit Sale Order Date", default_model='sale.order',
+		'limit_sale_order_date': fields.date("Limit Sale Order Date",
 			help="This setting is for limit to show Sale Order list. Just show Sale Order with date greater than this setting date."),
 	}
+	
+	def get_default_params(self, cr, uid, fields, context=None):
+		res = {}
+		param = self.pool.get('ir.config_parameter').get_param(cr, uid, 'sale.order', None)
+		if param is not None:
+			res['limit_sale_order_date'] = param
+		return res
 	
 	def create(self, cr, uid, values, context=None):
 		id = super(sale_order_config_settings, self).create(cr, uid, values, context)
@@ -22,15 +33,9 @@ class sale_order_config_settings(osv.osv_memory):
 			if isinstance(field, fields.related) and fname in values:
 				vals[fname] = values[fname]
 		self.write(cr, uid, [id], vals, context)
-
-		sale_order_obj = self.pool.get('sale.order')
-		sale_order_ids = sale_order_obj.search(cr, uid, [])
-		if values.get('default_limit_sale_order_date', False):
-			sale_order_obj.write(cr, uid, sale_order_ids, {
-				'limit_sale_order_date': values['default_limit_sale_order_date'],
-			}, context=context)
-		else:
-			sale_order_obj.write(cr, uid, sale_order_ids, {
-				'limit_sale_order_date': datetime.today().strftime('1970-01-01 00:00:00'),
-			}, context=context)
 		return id
+	
+	def set_params(self, cr, uid, ids, context=None):
+		config_param_obj = self.pool.get('ir.config_parameter')
+		config = self.browse(cr, uid, ids[0], context)
+		config_param_obj.set_param(cr, uid, 'sale.order', config.limit_sale_order_date)
