@@ -20,7 +20,7 @@
 		<menuitem sequence="1" id="menu_action_customer_credit_limit" parent="base.menu_base_config"
 				action="action_customer_credit_limit"/>
 
-		<menuitem sequence="1" id="menu_action_receivable_limit_log" parent="base.menu_sales"
+		<menuitem sequence="1" id="menu_action_receivable_limit_log" parent="base.menu_base_config"
 				action="action_receivable_limit_log"/>
 	</data>
 </openerp>

@@ -17,14 +17,19 @@ class sale_order(osv.osv):
 	_defaults = {
 		'is_receivable_overlimit': False,
 	}
-	
+
 	# ACTIONS ---------------------------------------------------------------------------------------------------------------
 
 	def action_button_confirm(self, cr, uid, ids, context=None):
 		partner_obj = self.pool.get('res.partner')
 		for order in self.browse(cr, uid, ids, context):
 			if partner_obj.is_credit_overlimit(cr, uid, order.partner_id.id, order.amount_total, context):
-				raise osv.except_osv(_('Warning!'), _('Credit is / will be over-limit.'))
+				if order.partner_id.is_overlimit_enabled:
+					self.write(cr, uid, [order.id], {
+						'is_receivable_overlimit': True,
+						})
+				else:
+					raise osv.except_osv(_('Warning!'), _('Credit is / will be over-limit.'))
 		return super(sale_order, self).action_button_confirm(cr, uid, ids, context)
 	
 	def search(self, cr, uid, args, offset=0, limit=None, order=None, context=None, count=False):

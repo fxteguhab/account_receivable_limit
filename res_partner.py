@@ -26,7 +26,7 @@ class res_partner(osv.osv):
 			receivable_limit_log_obj.record_receivable_limit_changes(
 				cr, uid, result_partner_id, 0, vals.get('credit_limit', 0)
 			)
-		return super(res_partner, self).create(cr, uid, vals, context)
+		return result_partner_id
 	
 	def write(self, cr, uid, ids, vals, context=None):
 		new_credit = vals.get('credit_limit', False)
