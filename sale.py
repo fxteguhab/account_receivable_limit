@@ -41,6 +41,7 @@ class sale_order(osv.osv):
 				today = (datetime.now()).replace(hour=0, minute=0, second=0, microsecond=0)
 				n_date = int(limit_n_date)
 			# kurangkan dengan timezone
-				n_pass_date = ((today - timedelta(hours=24*n_date)) - timedelta(hours = 7)).strftime('%Y-%m-%d %H:%M:%S')
+				#n_pass_date = ((today - timedelta(hours=24*n_date)) - timedelta(hours = 7)).strftime('%Y-%m-%d %H:%M:%S')
+				n_pass_date = (today - n_date).strftime('%Y-%m-%d %H:%M:%S')
 				args.append(['date_order', '>=', n_pass_date])
 		return super(sale_order,self).search(cr, uid, args, offset, limit, order, context, count)
