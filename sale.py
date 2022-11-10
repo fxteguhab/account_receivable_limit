@@ -19,7 +19,7 @@ class sale_order(osv.osv):
 	}
 
 	# ACTIONS ---------------------------------------------------------------------------------------------------------------
-
+	'''
 	def action_button_confirm(self, cr, uid, ids, context=None):
 		partner_obj = self.pool.get('res.partner')
 		for order in self.browse(cr, uid, ids, context):
@@ -31,6 +31,7 @@ class sale_order(osv.osv):
 				else:
 					raise osv.except_osv(_('Warning!'), _('Credit is / will be over-limit.'))
 		return super(sale_order, self).action_button_confirm(cr, uid, ids, context)
+	'''
 	
 	def search(self, cr, uid, args, offset=0, limit=None, order=None, context=None, count=False):
 		# Jika diminta supaya list dibatasi hanya untuk n date berapa hari yang lalu
